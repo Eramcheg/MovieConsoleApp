@@ -8,7 +8,12 @@ public class MovieList {
     private DataProcessor dataManager = new DataProcessor();
 
     public MovieList() {
-        this.movies = dataManager.loadMovies();  // Load movies at construction
+        List<Movie> loadedMovies = dataManager.loadMovies();
+        if (loadedMovies != null) {
+            this.movies = loadedMovies;
+        } else {
+            this.movies = new ArrayList<>();  // Initialize with an empty list if loadMovies returns null because of empty(for example) json
+        }
     }
 
     public void addMovie(Movie movie) {

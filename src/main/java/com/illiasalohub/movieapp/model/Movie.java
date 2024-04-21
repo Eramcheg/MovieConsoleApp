@@ -1,6 +1,9 @@
 package com.illiasalohub.movieapp.model;
 
 public class Movie {
+    private static int nextId = 1;
+
+    private int id;
     private String title;
     private String director;
     private String genre;
@@ -9,6 +12,7 @@ public class Movie {
     private Statuses status;
 
     public Movie(String title, String director, String genre, int year, Statuses status, double rating) {
+        this.id = nextId++;
         this.title = title;
         this.director = director;
         this.genre = genre;
@@ -17,6 +21,7 @@ public class Movie {
         this.status = status;
     }
     public Movie(String title, String director, String genre, int year, Statuses status) {
+        this.id = nextId++;
         this.title = title;
         this.director = director;
         this.genre = genre;
@@ -70,5 +75,16 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+    public static void setNextId(int nextId) {
+        Movie.nextId = nextId;
     }
 }

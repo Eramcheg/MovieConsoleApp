@@ -1,7 +1,10 @@
 package com.illiasalohub.movieapp.controller;
 
 import com.illiasalohub.movieapp.model.MovieList;
+import com.illiasalohub.movieapp.model.Movie;
 import com.illiasalohub.movieapp.view.MovieView;
+
+import java.util.List;
 
 public class MovieController {
     private MovieList movieList;
@@ -29,23 +32,36 @@ public class MovieController {
     private void processChoice(int choice) {
         switch (choice) {
             case 1:
-                // Logic to add a movie
-                System.out.println("add movie");
+                // Add a movie
+                addNewMovie();
                 break;
             case 2:
 //                movieView.displayMovies(movieList.getMovies());
-                System.out.println("display movies");
+                displayMovies();
                 break;
             case 3:
                 // Display statistics
                 System.out.println("statistics");
                 break;
             case 4:
-//                movieList.saveMovies();  // Assuming there's a method to save movies
+//                movieList.saveMovies();
                 System.out.println("Exiting and saving... Goodbye!");
                 break;
             default:
                 movieView.displayError("Invalid choice, please try valid choice.");
         }
+    }
+
+    public void addNewMovie() {
+        Movie movie = movieView.promptNewMovie();
+        movieList.addMovie(movie);
+        movieList.saveMovies();  // Save immediately after adding
+        System.out.println("Movie added successfully!");
+    }
+
+    public void displayMovies() {
+
+        List<Movie> movies = movieList.getMovies();
+        movieView.displayMovies(movies);
     }
 }
