@@ -56,14 +56,24 @@ public class MovieView {
 
         Statuses status = getStatusFromChoice();
 
-        double rating = 0.0;
         if (status == Statuses.ALREADY_WATCHED) {
-            System.out.println("Enter your rating:");
-            rating = scanner.nextDouble(); // InputMismatchException
-            scanner.nextLine();
+            double rating = processRating();
             return new Movie(title, director, genre, year, status, rating);
         } else {
             return new Movie(title, director, genre, year, status);
+        }
+    }
+
+    private double processRating() {
+        while (true) {
+            System.out.println("Enter your rating (e.g., 9.5 or 9,5):");
+            String ratingInput = scanner.nextLine().trim();
+            try {
+                ratingInput = ratingInput.replace(',', '.');
+                return Double.parseDouble(ratingInput);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid rating. Please enter a valid number.");
+            }
         }
     }
 
