@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         MovieList model = new MovieList();
         MovieView view = new MovieView();
-        MovieController controller = new MovieController();
+        MovieController controller = new MovieController(model, view);
+        controller.start();
     }
 }
