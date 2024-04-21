@@ -27,4 +27,13 @@ public class MovieList {
     public List<Movie> getMovies() {
         return movies;
     }
+
+    public Movie getMovieById(int id) {
+        for (Movie movie : movies) {
+            if (movie.getId() == id) {
+                return movie;
+            }
+        }
+        return null;
+    }
 }

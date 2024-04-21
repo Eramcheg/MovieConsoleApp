@@ -2,6 +2,7 @@ package com.illiasalohub.movieapp.controller;
 
 import com.illiasalohub.movieapp.model.MovieList;
 import com.illiasalohub.movieapp.model.Movie;
+import com.illiasalohub.movieapp.model.Statuses;
 import com.illiasalohub.movieapp.view.MovieView;
 
 import java.util.List;
@@ -23,36 +24,59 @@ public class MovieController {
         }
         int choice;
         do {
-            movieView.displayMenu();
+            movieView.displayStartMenu();
             choice = movieView.getUserInput();
             processChoice(choice);
-        } while (choice != 4);
+        } while (choice != 5);
     }
 
     private void processChoice(int choice) {
         switch (choice) {
             case 1:
-                // Add a movie
                 addNewMovie();
                 break;
             case 2:
-//                movieView.displayMovies(movieList.getMovies());
                 displayMovies();
                 break;
             case 3:
-                // Display statistics
                 System.out.println("statistics");
                 break;
             case 4:
-                // Display settings
                 System.out.println("settings");
                 break;
             case 5:
-//                movieList.saveMovies();
                 System.out.println("Exiting and saving... Goodbye!");
                 break;
             default:
                 movieView.displayError("Invalid choice, please try valid choice.");
+        }
+    }
+
+    private void processMovieActionChoice(int choice) {
+        switch (choice) {
+            case 1:
+                editMovie();
+                break;
+            case 2:
+                //filterMovies();
+                break;
+            case 3:
+                //orderMovies();
+                break;
+            case 4:
+                //setDisplayType();
+                break;
+            case 5:
+                //deleteMovie();
+                break;
+            case 6:
+                // Return to the main menu
+                return;
+            default:
+                movieView.displayError("Invalid choice, please select a valid option.");
+                movieView.displayAllMoviesActionMenu();
+                int actionChoice = movieView.getUserInput();
+                processMovieActionChoice(actionChoice);
         }
     }
 
@@ -63,7 +87,7 @@ public class MovieController {
             return;
         }
         movieList.addMovie(movie);
-        movieList.saveMovies();  // Save immediately after adding
+        movieList.saveMovies();  // Save after adding
         System.out.println("Movie added successfully!");
     }
 
@@ -71,5 +95,72 @@ public class MovieController {
 
         List<Movie> movies = movieList.getMovies();
         movieView.displayMovies(movies);
+        if (!movies.isEmpty()) {
+            int actionChoice;
+            do {
+                movieView.displayAllMoviesActionMenu();
+                actionChoice = movieView.getUserInput();
+                processMovieActionChoice(actionChoice);
+            } while (actionChoice != 6);
+
+        }
+    }
+
+    public void editMovie() {
+        int movieId = movieView.promptForMovieId();
+        Movie movie = movieList.getMovieById(movieId);
+        if (movie != null) {
+            movieView.displayMovie(movie);
+            int editChoice = movieView.getEditChoice(movie);
+            processEditChoice(editChoice, movie);
+        } else {
+            movieView.displayError("Movie not found!");
+        }
+    }
+
+    private void processEditChoice(int choice, Movie movie) {
+        String field = "";
+        switch (choice) {
+            case 1:
+                field = "title";
+                movie.setTitle(movieView.getNewValue(field));
+                break;
+            case 2:
+                field = "director";
+                movie.setDirector(movieView.getNewValue(field));
+                break;
+            case 3:
+                field = "genre";
+                movie.setGenre(movieView.getNewValue(field));
+                break;
+            case 4: //Year
+                int newYear = movieView.getMovieYear();
+                movie.setYear(newYear);
+                break;
+            case 5: //Status
+                processStatusEdit(movie);
+                break;
+            case 6: //Rating
+                if (movie.getStatus() == Statuses.ALREADY_WATCHED) {
+                    double newRating = movieView.processRating();
+                    movie.setRating(newRating);
+                } else {
+                    System.out.println("Rating can only be set if the status is 'Already Watched'.");
+                }
+                break;
+        }
+        movieList.saveMovies();  // Save changes after edit
+        System.out.println("Movie updated successfully.\n");
+    }
+
+    private void processStatusEdit(Movie movie) {
+        Statuses newStatus = movieView.getStatusFromChoice();
+        movie.setStatus(newStatus);
+        if (newStatus == Statuses.ALREADY_WATCHED && movie.getRating() == 0.0) {
+            double newRating = movieView.processRating();
+            movie.setRating(newRating);
+        } else if (newStatus != Statuses.ALREADY_WATCHED && movie.getRating() > 0.0) {
+            movie.setRating(0.0);
+        }
     }
 }

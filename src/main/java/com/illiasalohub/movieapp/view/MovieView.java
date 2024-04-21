@@ -19,12 +19,27 @@ public class MovieView {
         System.out.print("Enter your choice to continue or quit: ");
         return scanner.nextInt();
     }
-    public void displayMenu() {
+    public void displayStartMenu() {
         System.out.println("\nSelect an option:");
         System.out.println("1. Add a new movie");
         System.out.println("2. Display all movies");
         System.out.println("3. Display statistics");
         System.out.println("4. Save and Exit");
+    }
+
+    public void displayAllMoviesActionMenu() {
+        System.out.println("\nSelect an option:");
+        System.out.println("1. Edit movie");
+        System.out.println("2. Filter movies displaying");
+        System.out.println("3. Order movies displaying");
+        System.out.println("4. Set display type");
+        System.out.println("5. Delete movie");
+        System.out.println("6. Back to main menu");
+    }
+
+    public void clearNextFlow(){
+        System.out.println();
+        scanner.nextLine();
     }
 
     public int getUserInput() {
@@ -41,8 +56,7 @@ public class MovieView {
     }
 
     public Movie promptNewMovie() {
-        System.out.println();
-        scanner.nextLine();
+        clearNextFlow();
 
         System.out.println("\nEnter movie title (or type 'quit' to exit): ");
         String title = scanner.nextLine();
@@ -95,7 +109,7 @@ public class MovieView {
         }
     }
 
-    private Statuses getStatusFromChoice() {
+    public Statuses getStatusFromChoice() {
         while (true) {  // Infinite loop to ensure input is received correctly
             System.out.println("Choose status (1- Want to Watch, 2- Watching, 3- Already Watched):");
             int choice = readIntSafe();
@@ -113,7 +127,7 @@ public class MovieView {
         }
     }
 
-    private double processRating() {
+    public double processRating() {
         while (true) {
             System.out.println("Enter your rating (e.g., 9.5 or 9,5):");
             String ratingInput = scanner.nextLine().trim();
@@ -152,5 +166,45 @@ public class MovieView {
         return output;
     }
 
+    public int promptForMovieId() {
+        clearNextFlow();
+        System.out.print("Write movie ID you want to edit: ");
+        return readIntSafe();
+    }
 
+    public void displayMovie(Movie movie) {
+        if (movie != null) {
+            System.out.println("Current Movie Details:\n");
+            System.out.println("Title: " + movie.getTitle());
+            System.out.println("Director: " + movie.getDirector());
+            System.out.println("Genre: " + movie.getGenre());
+            System.out.println("Year: " + movie.getYear());
+            System.out.println("Status: " + movie.getStatus());
+            if(movie.getRating() != 0.0){
+                System.out.println("Rating: " + movie.getRating());
+            }
+
+        } else {
+            System.out.println("No movie found with the given ID.");
+        }
+    }
+
+    public int getEditChoice(Movie movie) {
+        System.out.println("What do you want to edit?");
+        System.out.println("1. Title");
+        System.out.println("2. Director");
+        System.out.println("3. Genre");
+        System.out.println("4. Year");
+        System.out.println("5. Status");
+        if(movie.getRating() != 0.0) {
+            System.out.println("6. Rating");
+        }
+        System.out.println("Enter your choice:");
+        return readIntSafe();
+    }
+
+    public String getNewValue(String field) {
+        System.out.print("Enter new " + field + ": ");
+        return scanner.nextLine();
+    }
 }
