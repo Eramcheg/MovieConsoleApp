@@ -1,6 +1,7 @@
 package com.illiasalohub.movieapp.model;
 
 public class Movie {
+    public static final int FIRST_MOVIE_YEAR = 1888;
     private static int nextId = 1;
 
     private int id;

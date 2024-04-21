@@ -44,6 +44,10 @@ public class MovieController {
                 System.out.println("statistics");
                 break;
             case 4:
+                // Display settings
+                System.out.println("settings");
+                break;
+            case 5:
 //                movieList.saveMovies();
                 System.out.println("Exiting and saving... Goodbye!");
                 break;
@@ -54,6 +58,10 @@ public class MovieController {
 
     public void addNewMovie() {
         Movie movie = movieView.promptNewMovie();
+        if (movie == null) {
+            System.out.println("Adding new movie canceled.");
+            return;
+        }
         movieList.addMovie(movie);
         movieList.saveMovies();  // Save immediately after adding
         System.out.println("Movie added successfully!");

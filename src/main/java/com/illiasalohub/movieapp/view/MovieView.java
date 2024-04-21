@@ -36,23 +36,27 @@ public class MovieView {
         System.out.println("Error: " + message);
     }
 
+    private boolean wantsToQuit(String input) {
+        return "quit".equalsIgnoreCase(input.trim());
+    }
+
     public Movie promptNewMovie() {
-        System.out.println("");
+        System.out.println();
         scanner.nextLine();
 
-        System.out.print("Enter movie title:");
+        System.out.println("\nEnter movie title (or type 'quit' to exit): ");
         String title = scanner.nextLine();
+        if (wantsToQuit(title)) {
+            return null;  // Signal that the user wants to quit
+        }
 
-        System.out.print("Enter director:");
+        System.out.print("Enter director: ");
         String director = scanner.nextLine();
 
-        System.out.print("Enter genre:");
+        System.out.print("Enter genre: ");
         String genre = scanner.nextLine();
 
-        System.out.print("Enter release year:");
-        int year = scanner.nextInt(); // InputMismatchException
-
-        scanner.nextLine();
+        int year = getMovieYear();
 
         Statuses status = getStatusFromChoice();
 
@@ -64,15 +68,29 @@ public class MovieView {
         }
     }
 
-    private double processRating() {
+    public int getMovieYear() {
+        int year;
         while (true) {
-            System.out.println("Enter your rating (e.g., 9.5 or 9,5):");
-            String ratingInput = scanner.nextLine().trim();
+            System.out.print("Enter release year: ");
             try {
-                ratingInput = ratingInput.replace(',', '.');
-                return Double.parseDouble(ratingInput);
+                year = Integer.parseInt(scanner.nextLine());
+                if (year >= Movie.FIRST_MOVIE_YEAR) {
+                    return year;
+                } else {
+                    System.out.println("Invalid year. First movie was created in " + Movie.FIRST_MOVIE_YEAR + ".");
+                }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid rating. Please enter a valid number.");
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
+    }
+
+    private int readIntSafe() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.\n");
             }
         }
     }
@@ -80,8 +98,7 @@ public class MovieView {
     private Statuses getStatusFromChoice() {
         while (true) {  // Infinite loop to ensure input is received correctly
             System.out.println("Choose status (1- Want to Watch, 2- Watching, 3- Already Watched):");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = readIntSafe();
 
             switch (choice) {
                 case 1:
@@ -92,6 +109,24 @@ public class MovieView {
                     return Statuses.ALREADY_WATCHED;
                 default:
                     System.out.println("Invalid choice, try again.");  // Try again if invalid input
+            }
+        }
+    }
+
+    private double processRating() {
+        while (true) {
+            System.out.println("Enter your rating (e.g., 9.5 or 9,5):");
+            String ratingInput = scanner.nextLine().trim();
+            try {
+                ratingInput = ratingInput.replace(',', '.');
+                double rating = Double.parseDouble(ratingInput);
+                if (rating < 1 || rating > 10) {
+                    System.out.println("Invalid rating. Please enter a rating between 1 and 10.");
+                } else {
+                    return rating;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid rating. Please enter a valid number.");
             }
         }
     }
@@ -108,9 +143,13 @@ public class MovieView {
     }
 
     private String movieDetails(Movie movie) {
-        return String.format("Title: %s, Director: %s, Genre: %s, Year: %d, Status: %s, Rating: %.1f",
-                movie.getTitle(), movie.getDirector(), movie.getGenre(), movie.getYear(),
-                movie.getStatus(), movie.getRating());
+        String output = String.format("Id: %d\nTitle: %s\nDirector: %s\nGenre: %s\nYear: %d\nStatus: %s\n",
+                movie.getId(), movie.getTitle(), movie.getDirector(), movie.getGenre(), movie.getYear(),
+                movie.getStatus());
+        if(movie.getRating() > 0){
+            output+= String.format("Rating: %.1f/10\n", movie.getRating());
+        }
+        return output;
     }
 
 
