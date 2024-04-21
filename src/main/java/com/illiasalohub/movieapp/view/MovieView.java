@@ -17,7 +17,7 @@ public class MovieView {
     }
     public int getInitialUserInput() {
         System.out.print("Enter your choice to continue or quit: ");
-        return scanner.nextInt();
+        return readIntSafe();
     }
     public void displayStartMenu() {
         System.out.println("\nSelect an option:");
@@ -37,14 +37,9 @@ public class MovieView {
         System.out.println("6. Back to main menu");
     }
 
-    public void clearNextFlow(){
-        System.out.println();
-        scanner.nextLine();
-    }
-
     public int getUserInput() {
         System.out.print("Enter your choice: ");
-        return scanner.nextInt();
+        return readIntSafe();
     }
 
     public void displayError(String message) {
@@ -56,13 +51,19 @@ public class MovieView {
     }
 
     public Movie promptNewMovie() {
-        clearNextFlow();
 
-        System.out.println("\nEnter movie title (or type 'quit' to exit): ");
-        String title = scanner.nextLine();
-        if (wantsToQuit(title)) {
-            return null;  // Signal that the user wants to quit
+        String title="";
+        while(title.isEmpty()){
+            System.out.println("\nEnter movie title (or type 'quit' to exit): ");
+            title = scanner.nextLine();
+            if (wantsToQuit(title)) {
+                return null;  // Signal that the user wants to quit
+            }
+            if(title.isEmpty()){
+                System.out.println("Title cannot be empty!");
+            }
         }
+
 
         System.out.print("Enter director: ");
         String director = scanner.nextLine();
@@ -99,7 +100,8 @@ public class MovieView {
         }
     }
 
-    private int readIntSafe() {
+    public int readIntSafe() {
+
         while (true) {
             try {
                 return Integer.parseInt(scanner.nextLine().trim());
@@ -167,7 +169,6 @@ public class MovieView {
     }
 
     public int promptForMovieId() {
-        clearNextFlow();
         System.out.print("Write movie ID you want to edit: ");
         return readIntSafe();
     }
@@ -200,11 +201,67 @@ public class MovieView {
             System.out.println("6. Rating");
         }
         System.out.println("Enter your choice:");
+
         return readIntSafe();
     }
 
     public String getNewValue(String field) {
         System.out.print("Enter new " + field + ": ");
         return scanner.nextLine();
+    }
+
+    public int getFilterChoice() {
+        System.out.println("\nBy which field you want to filter?");
+        System.out.println("1. Title");
+        System.out.println("2. Director");
+        System.out.println("3. Genre");
+        System.out.println("4. Year Range");
+        System.out.println("5. Status");
+        System.out.println("6. Rating");
+        System.out.println("Enter your choice:");
+
+        return readIntSafe();
+    }
+
+    public String getFilterValue() {
+        System.out.print("Enter filter value: ");
+        return scanner.nextLine();
+    }
+
+    public int[] getYearRange() {
+        System.out.print("Enter start year: ");
+        int startYear = readIntSafe();
+        System.out.print("Enter end year: ");
+        int endYear = readIntSafe();
+        return new int[]{startYear, endYear};
+    }
+
+    public double[] getRatingRange() {
+        System.out.print("Enter minimum rating (1-10): ");
+        double minRating = Double.parseDouble(scanner.nextLine());
+        System.out.print("Enter maximum rating (1-10): ");
+        double maxRating = Double.parseDouble(scanner.nextLine());
+        return new double[]{minRating, maxRating};
+    }
+
+    public int getOrderChoice() {
+        System.out.println("Choose the field to order movies by:");
+        System.out.println("1. Title");
+        System.out.println("2. Director");
+        System.out.println("3. Genre");
+        System.out.println("4. Year");
+        System.out.println("5. Status");
+        System.out.println("6. Rating");
+        System.out.println("Enter your choice:");
+        return readIntSafe();  // Ensures input is safely read as integer
+    }
+
+    public boolean getSortOrder() {
+        System.out.println("Select sort order:");
+        System.out.println("1. Ascending");
+        System.out.println("2. Descending");
+        System.out.println("Enter your choice:");
+        int choice = readIntSafe();  // Reads the user input safely
+        return choice != 2;  // Returns true for Ascending, false for Descending
     }
 }

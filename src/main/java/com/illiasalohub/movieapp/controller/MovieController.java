@@ -5,6 +5,7 @@ import com.illiasalohub.movieapp.model.Movie;
 import com.illiasalohub.movieapp.model.Statuses;
 import com.illiasalohub.movieapp.view.MovieView;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class MovieController {
@@ -58,10 +59,10 @@ public class MovieController {
                 editMovie();
                 break;
             case 2:
-                //filterMovies();
+                filterMovies();
                 break;
             case 3:
-                //orderMovies();
+                orderMovies();
                 break;
             case 4:
                 //setDisplayType();
@@ -116,6 +117,81 @@ public class MovieController {
         } else {
             movieView.displayError("Movie not found!");
         }
+    }
+
+    public void filterMovies() {
+        int filterChoice = movieView.getFilterChoice();
+        List<Movie> filteredMovies;
+
+        switch (filterChoice) {
+            case 1:  // Title
+                String title = movieView.getFilterValue();
+                filteredMovies = movieList.filterByTitle(title);
+                break;
+            case 2:  // Director
+                String director = movieView.getFilterValue();
+                filteredMovies = movieList.filterByDirector(director);
+                break;
+            case 3:  // Genre
+                String genre = movieView.getFilterValue();
+                filteredMovies = movieList.filterByGenre(genre);
+                break;
+            case 4:  // Year Range
+                int[] years = movieView.getYearRange();
+                filteredMovies = movieList.filterByYearRange(years[0], years[1]);
+                break;
+            case 5:  // Status
+                Statuses status = Statuses.values()[movieView.readIntSafe() - 1];
+                filteredMovies = movieList.filterByStatus(status);
+                break;
+            case 6:  // Rating
+                double[] ratings = movieView.getRatingRange();
+                filteredMovies = movieList.filterByRatingRange(ratings[0], ratings[1]);
+                break;
+            default:
+                movieView.displayError("Invalid choice, please select a valid option.");
+                return;
+        }
+
+        movieView.displayMovies(filteredMovies);
+    }
+
+    public void orderMovies() {
+        int orderChoice = movieView.getOrderChoice();
+        boolean isAscending = movieView.getSortOrder();
+        List<Movie> orderedMovies = movieList.getMovies();
+
+        Comparator<Movie> comparator;
+        switch (orderChoice) {
+            case 1:
+                comparator = Comparator.comparing(Movie::getTitle);
+                break;
+            case 2:
+                comparator = Comparator.comparing(Movie::getDirector);
+                break;
+            case 3:
+                comparator = Comparator.comparing(Movie::getGenre);
+                break;
+            case 4:
+                comparator = Comparator.comparingInt(Movie::getYear);
+                break;
+            case 5:
+                comparator = Comparator.comparing(Movie::getStatus);
+                break;
+            case 6:
+                comparator = Comparator.comparingDouble(Movie::getRating);
+                break;
+            default:
+                movieView.displayError("Invalid choice. Please select a valid option.");
+                return;
+        }
+
+        if (!isAscending) {
+            comparator = comparator.reversed();
+        }
+
+        orderedMovies.sort(comparator);
+        movieView.displayMovies(orderedMovies);
     }
 
     private void processEditChoice(int choice, Movie movie) {
