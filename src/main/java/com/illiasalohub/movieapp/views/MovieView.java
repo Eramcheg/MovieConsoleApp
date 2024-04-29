@@ -6,6 +6,8 @@ import java.util.Scanner;
 import com.illiasalohub.movieapp.model.Movie;
 import com.illiasalohub.movieapp.model.MovieList;
 import com.illiasalohub.movieapp.model.Statuses;
+
+
 public class MovieView {
     private Scanner scanner = new Scanner(System.in);
 
@@ -40,10 +42,6 @@ public class MovieView {
     public int getUserInput() {
         System.out.print("Enter your choice: ");
         return readIntSafe();
-    }
-
-    public void displayError(String message) {
-        System.out.println("Error: " + message);
     }
 
     private boolean wantsToQuit(String input) {

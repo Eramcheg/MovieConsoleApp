@@ -4,6 +4,7 @@ import com.illiasalohub.movieapp.model.MovieList;
 import com.illiasalohub.movieapp.model.Movie;
 import com.illiasalohub.movieapp.model.Statuses;
 import com.illiasalohub.movieapp.views.MovieView;
+import com.illiasalohub.movieapp.views.ErrorView;
 
 import java.util.Comparator;
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.List;
 public class MovieController {
     private MovieList movieList;
     private MovieView movieView;
-    public MovieController(MovieList movieList, MovieView movieView) {
+    private ErrorView errorView;
+    public MovieController(MovieList movieList, MovieView movieView, ErrorView errorView) {
         this.movieList = movieList;
         this.movieView = movieView;
+        this.errorView = errorView;
     }
 
     public void start() {
@@ -49,7 +52,7 @@ public class MovieController {
                 System.out.println("Exiting and saving... Goodbye!");
                 break;
             default:
-                movieView.displayError("Invalid choice, please try valid choice.");
+                errorView.displayError("Invalid choice, please try valid choice.");
         }
     }
 
@@ -74,7 +77,7 @@ public class MovieController {
                 // Return to the main menu
                 return;
             default:
-                movieView.displayError("Invalid choice, please select a valid option.");
+                errorView.displayError("Invalid choice, please select a valid option.");
                 movieView.displayAllMoviesActionMenu();
                 int actionChoice = movieView.getUserInput();
                 processMovieActionChoice(actionChoice);
@@ -115,7 +118,7 @@ public class MovieController {
             int editChoice = movieView.getEditChoice(movie);
             processEditChoice(editChoice, movie);
         } else {
-            movieView.displayError("Movie not found!");
+            errorView.displayError("Movie not found!");
         }
     }
 
@@ -149,7 +152,7 @@ public class MovieController {
                 filteredMovies = movieList.filterByRatingRange(ratings[0], ratings[1]);
                 break;
             default:
-                movieView.displayError("Invalid choice, please select a valid option.");
+                errorView.displayError("Invalid choice, please select a valid option.");
                 return;
         }
 
@@ -182,7 +185,7 @@ public class MovieController {
                 comparator = Comparator.comparingDouble(Movie::getRating);
                 break;
             default:
-                movieView.displayError("Invalid choice. Please select a valid option.");
+                errorView.displayError("Invalid choice. Please select a valid option.");
                 return;
         }
 
