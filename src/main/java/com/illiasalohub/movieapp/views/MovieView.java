@@ -10,6 +10,11 @@ import com.illiasalohub.movieapp.model.Statuses;
 
 public class MovieView {
     private Scanner scanner = new Scanner(System.in);
+    private StatisticsView statisticsView;
+
+    public MovieView(){
+        statisticsView = new StatisticsView();
+    }
 
     public void displayWelcomeMessage() {
         System.out.println("Welcome to the Movie Management Console Application!\n");
@@ -37,6 +42,19 @@ public class MovieView {
         System.out.println("4. Set display type");
         System.out.println("5. Delete movie");
         System.out.println("6. Back to main menu");
+    }
+
+    public void displayStatisticsMenu() {
+        System.out.println("\nSelect an option:");
+        System.out.println("1. Total statistics");
+        System.out.println("2. Movies by genres");
+        System.out.println("3. Rating statistics");
+        System.out.println("4. Movies by directors");
+        System.out.println("5. Back to main menu");
+    }
+
+    public StatisticsView statisticDisplay(){
+        return statisticsView;
     }
 
     public int getUserInput() {
@@ -297,4 +315,6 @@ public class MovieView {
         System.out.print("Enter the ID of the movie you want to delete: ");
         return readIntSafe();  // Uses a method to read the input safely as an integer
     }
+
+
 }

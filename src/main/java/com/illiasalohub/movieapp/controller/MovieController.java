@@ -2,12 +2,15 @@ package com.illiasalohub.movieapp.controller;
 
 import com.illiasalohub.movieapp.model.MovieList;
 import com.illiasalohub.movieapp.model.Movie;
+import com.illiasalohub.movieapp.model.StatisticsResult;
+import com.illiasalohub.movieapp.model.StatisticsCalculator;
 import com.illiasalohub.movieapp.model.Statuses;
 import com.illiasalohub.movieapp.views.MovieView;
 import com.illiasalohub.movieapp.views.ErrorView;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 public class MovieController {
     private MovieList movieList;
@@ -44,11 +47,9 @@ public class MovieController {
                 break;
             case 3:
                 System.out.println("statistics");
+                statistics();
                 break;
             case 4:
-                System.out.println("settings");
-                break;
-            case 5:
                 System.out.println("Exiting and saving... Goodbye!");
                 break;
             default:
@@ -84,10 +85,35 @@ public class MovieController {
         }
     }
 
+    private void processStatisticsChoice(int choice) {
+        switch (choice) {
+            case 1:
+                processTotalStatistics();
+                break;
+            case 2:
+                processGenreStatistics();
+                break;
+            case 3:
+                processRatingStatistics();
+                break;
+            case 4:
+                processDirectorsStatistics();
+                break;
+            case 5:
+                // Return to the main menu
+                break;
+            default:
+                errorView.displayError("Invalid choice, please select a valid option.");
+                movieView.displayAllMoviesActionMenu();
+                int actionChoice = movieView.getUserInput();
+                processMovieActionChoice(actionChoice);
+        }
+    }
+
     public void addNewMovie() {
         Movie movie = movieView.promptNewMovie();
         if (movie == null) {
-            System.out.println("Adding new movie canceled.");
+            errorView.displayError("Adding new movie canceled.");
             return;
         }
         movieList.addMovie(movie);
@@ -96,7 +122,6 @@ public class MovieController {
     }
 
     public void displayMovies() {
-
         List<Movie> movies = movieList.getMovies();
         movieView.displayMovies(movies);
         if (!movies.isEmpty()) {
@@ -109,6 +134,24 @@ public class MovieController {
 
         }
     }
+
+    public void statistics(){
+        List<Movie> movies = movieList.getMovies();
+        if (!movies.isEmpty()) {
+            int actionChoice;
+            do {
+                movieView.displayStatisticsMenu();
+                actionChoice = movieView.getUserInput();
+                processStatisticsChoice(actionChoice);
+            } while (actionChoice != 5);
+        }
+    }
+
+
+
+
+
+
 
     public void editMovie() {
         int movieId = movieView.promptForMovieId();
@@ -204,7 +247,7 @@ public class MovieController {
             System.out.println("Movie deleted successfully.");
             movieList.saveMovies();
         } else {
-            System.out.println("No movie found with ID: " + movieId + ". Deletion failed.");
+            errorView.displayError("No movie found with ID: " + movieId + ". Deletion failed.");
         }
     }
 
@@ -252,5 +295,45 @@ public class MovieController {
         } else if (newStatus != Statuses.ALREADY_WATCHED && movie.getRating() > 0.0) {
             movie.setRating(0.0);
         }
+    }
+
+    private void processTotalStatistics(){
+        List<Movie> movies = movieList.getMovies();
+        if (movies.isEmpty()) {
+            errorView.displayError("No movies available.");
+            return;
+        }
+        StatisticsResult stats = StatisticsCalculator.calculateTotalStatistics(movies);
+        movieView.statisticDisplay().displayStatistics(stats);
+    }
+
+    public void processGenreStatistics() {
+        List<Movie> movies = movieList.getMovies();
+        if (movies.isEmpty()) {
+            errorView.displayError("No movies available.");
+            return;
+        }
+        Map<String, Integer> genreCounts = StatisticsCalculator.calculateGenreCounts(movies);
+        movieView.statisticDisplay().displayGenreStatistics(genreCounts);
+    }
+
+    public void processRatingStatistics() {
+        List<Movie> movies = movieList.getMovies();
+        if (movies.isEmpty()) {
+            errorView.displayError("No movies available.");
+            return;
+        }
+        Map<String, Integer> ratingStatistics  = StatisticsCalculator.calculateRatingStatistics(movies);
+        movieView.statisticDisplay().displayRatingStatistics(ratingStatistics);
+    }
+
+    public void processDirectorsStatistics() {
+        List<Movie> movies = movieList.getMovies();
+        if (movies.isEmpty()) {
+            errorView.displayError("No movies available.");
+            return;
+        }
+        Map<String, Integer> directorsStatistics  = StatisticsCalculator.calculateDirectorStatistics(movies);
+        movieView.statisticDisplay().displayDirectorStatistics(directorsStatistics);
     }
 }
