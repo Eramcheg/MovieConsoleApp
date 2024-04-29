@@ -75,7 +75,8 @@ public class MovieController {
                 break;
             case 6:
                 // Return to the main menu
-                return;
+
+                break;
             default:
                 errorView.displayError("Invalid choice, please select a valid option.");
                 movieView.displayAllMoviesActionMenu();

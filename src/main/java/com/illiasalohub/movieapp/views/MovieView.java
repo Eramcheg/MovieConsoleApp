@@ -151,9 +151,13 @@ public class MovieView {
             return;
         }
         System.out.println("Displaying all movies:");
+        System.out.println("=======================================================");
+        System.out.println("--------------------------");
         for (Movie movie : movies) {
             System.out.println(movieDetails(movie));
+            System.out.println("--------------------------");
         }
+        System.out.println("=======================================================");
     }
 
     private String movieDetails(Movie movie) {
@@ -180,7 +184,9 @@ public class MovieView {
     }
 
     public void displayMovie(Movie movie) {
+
         if (movie != null) {
+            System.out.println("-----------------------");
             System.out.println("Current Movie Details:\n");
             System.out.println("Title: " + movie.getTitle());
             System.out.println("Director: " + movie.getDirector());
@@ -190,6 +196,7 @@ public class MovieView {
             if(movie.getRating() != 0.0){
                 System.out.println("Rating: " + movie.getRating());
             }
+            System.out.println("-----------------------");
 
         } else {
             System.out.println("No movie found with the given ID.");
