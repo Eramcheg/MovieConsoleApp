@@ -1,4 +1,4 @@
-package com.illiasalohub.movieapp.view;
+package com.illiasalohub.movieapp.views;
 
 import java.util.List;
 import java.util.Scanner;
@@ -159,9 +159,17 @@ public class MovieView {
     }
 
     private String movieDetails(Movie movie) {
-        String output = String.format("Id: %d\nTitle: %s\nDirector: %s\nGenre: %s\nYear: %d\nStatus: %s\n",
-                movie.getId(), movie.getTitle(), movie.getDirector(), movie.getGenre(), movie.getYear(),
-                movie.getStatus());
+        String output;
+        if (MovieList.displayingType == 1) {
+            output = String.format("Id: %d\nTitle: %s\nDirector: %s\nGenre: %s\nYear: %d\nStatus: %s\n",
+                    movie.getId(), movie.getTitle(), movie.getDirector(), movie.getGenre(), movie.getYear(),
+                    movie.getStatus());
+        } else {
+            output = String.format("%d. %s, Directed by %s in %d\nGenre: %s\nStatus: %s\n",
+                    movie.getId(), movie.getTitle(), movie.getDirector(),  movie.getYear(), movie.getGenre(),
+                    movie.getStatus());
+        }
+
         if(movie.getRating() > 0){
             output+= String.format("Rating: %.1f/10\n", movie.getRating());
         }
@@ -253,7 +261,7 @@ public class MovieView {
         System.out.println("5. Status");
         System.out.println("6. Rating");
         System.out.println("Enter your choice:");
-        return readIntSafe();  // Ensures input is safely read as integer
+        return readIntSafe();
     }
 
     public boolean getSortOrder() {
@@ -261,7 +269,27 @@ public class MovieView {
         System.out.println("1. Ascending");
         System.out.println("2. Descending");
         System.out.println("Enter your choice:");
-        int choice = readIntSafe();  // Reads the user input safely
-        return choice != 2;  // Returns true for Ascending, false for Descending
+        int choice = readIntSafe();
+        return choice != 2;
+    }
+
+    public void setDisplayType() {
+        System.out.println("Choose the display format:");
+        System.out.println("1. Detailed list format");
+        System.out.println("2. Compact paragraph format");
+        System.out.println("Enter your choice:");
+        int choice = readIntSafe();
+        if (choice == 1 || choice == 2) {
+            MovieList.displayingType = choice;
+            System.out.println("Display format set successfully.");
+        } else {
+            System.out.println("Invalid choice, defaulting to detailed list format.");
+            MovieList.displayingType = 1;
+        }
+    }
+
+    public int promptForMovieIdToDelete() {
+        System.out.print("Enter the ID of the movie you want to delete: ");
+        return readIntSafe();  // Uses a method to read the input safely as an integer
     }
 }

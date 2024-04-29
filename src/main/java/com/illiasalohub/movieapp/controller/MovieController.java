@@ -3,7 +3,7 @@ package com.illiasalohub.movieapp.controller;
 import com.illiasalohub.movieapp.model.MovieList;
 import com.illiasalohub.movieapp.model.Movie;
 import com.illiasalohub.movieapp.model.Statuses;
-import com.illiasalohub.movieapp.view.MovieView;
+import com.illiasalohub.movieapp.views.MovieView;
 
 import java.util.Comparator;
 import java.util.List;
@@ -65,10 +65,10 @@ public class MovieController {
                 orderMovies();
                 break;
             case 4:
-                //setDisplayType();
+                movieView.setDisplayType();
                 break;
             case 5:
-                //deleteMovie();
+                deleteMovie();
                 break;
             case 6:
                 // Return to the main menu
@@ -192,6 +192,17 @@ public class MovieController {
 
         orderedMovies.sort(comparator);
         movieView.displayMovies(orderedMovies);
+    }
+
+    public void deleteMovie() {
+        int movieId = movieView.promptForMovieIdToDelete();
+        boolean isDeleted = movieList.deleteMovieById(movieId);
+        if (isDeleted) {
+            System.out.println("Movie deleted successfully.");
+            movieList.saveMovies();
+        } else {
+            System.out.println("No movie found with ID: " + movieId + ". Deletion failed.");
+        }
     }
 
     private void processEditChoice(int choice, Movie movie) {

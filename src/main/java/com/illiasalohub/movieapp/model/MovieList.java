@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 public class MovieList {
+    public static int displayingType = 1;
     private List<Movie> movies = new ArrayList<>();
     private DataProcessor dataManager = new DataProcessor();
 
@@ -35,6 +36,10 @@ public class MovieList {
             }
         }
         return null;
+    }
+
+    public boolean deleteMovieById(int id) {
+        return movies.removeIf(movie -> movie.getId() == id);
     }
 
     public List<Movie> filterByTitle(String title) {

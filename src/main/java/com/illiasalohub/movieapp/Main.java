@@ -2,7 +2,7 @@ package com.illiasalohub.movieapp;
 
 import com.illiasalohub.movieapp.controller.MovieController;
 import com.illiasalohub.movieapp.model.MovieList;
-import com.illiasalohub.movieapp.view.MovieView;
+import com.illiasalohub.movieapp.views.MovieView;
 
 public class Main {
     public static void main(String[] args) {
