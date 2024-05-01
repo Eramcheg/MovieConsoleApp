@@ -7,6 +7,13 @@ import com.illiasalohub.movieapp.views.ErrorView;
 import com.illiasalohub.movieapp.views.MainView;
 
 public class Main {
+
+    /**
+     * Initializes and starts the movie management application.
+     * Sets up the views, controller, services, and data processor, and then starts the main interaction loop.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
         MainView view = new MainView();
         DataProcessor dataProcessor = new DataProcessor();

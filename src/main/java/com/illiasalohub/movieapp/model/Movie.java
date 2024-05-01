@@ -12,6 +12,16 @@ public class Movie {
     private double rating;
     private Statuses status;
 
+    /**
+     * Constructs a new Movie with all attributes specified.
+     *
+     * @param title    The title of the movie
+     * @param director The director of the movie
+     * @param genre    The genre of the movie
+     * @param year     The year the movie was released
+     * @param status   The viewing status of the movie
+     * @param rating   The rating of the movie
+     */
     public Movie(String title, String director, String genre, int year, Statuses status, double rating) {
         this.id = nextId++;
         this.title = title;
@@ -21,6 +31,16 @@ public class Movie {
         this.rating = rating;
         this.status = status;
     }
+
+    /**
+     * Constructs a new Movie without a rating for situations when status is not "Already watched".
+     *
+     * @param title    The title of the movie
+     * @param director The director of the movie
+     * @param genre    The genre of the movie
+     * @param year     The year the movie was released
+     * @param status   The viewing status of the movie
+     */
     public Movie(String title, String director, String genre, int year, Statuses status) {
         this.id = nextId++;
         this.title = title;
@@ -29,6 +49,8 @@ public class Movie {
         this.year = year;
         this.status = status;
     }
+
+    //Getters and setters
 
     public Statuses getStatus() {
         return status;

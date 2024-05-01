@@ -13,11 +13,20 @@ public class DataProcessor {
     private String filePath = "movies.json";
     private Gson gson = new Gson();
 
+    /**
+     * Nested static class to represent the structure of the movie data stored in JSON.
+     */
     private static class MovieData {
         int nextId;
         List<Movie> movies;
     }
 
+    /**
+     * Loads movies from the JSON file.
+     * This method deserializes JSON content into movie objects and updates the static movie ID counter.
+     *
+     * @return A list of movie objects retrieved from the JSON file, or an empty list if an error occurs.
+     */
     public List<Movie> loadMovies() {
         try (FileReader reader = new FileReader(filePath)) {
             Type dataType = new TypeToken<MovieData>(){}.getType();
@@ -30,6 +39,12 @@ public class DataProcessor {
         }
     }
 
+    /**
+     * Saves a list of movies to the JSON file.
+     * This method serializes the list of movies and their next ID into JSON format and writes it to the file.
+     *
+     * @param movies The list of movies to be saved.
+     */
     public void saveMovies(List<Movie> movies) {
         try (FileWriter writer = new FileWriter(filePath)) {
             MovieData data = new MovieData();

@@ -5,6 +5,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class StatisticsView {
+
+    /**
+     * Displays a summary of total statistics about the movie collection.
+     *
+     * @param result The statistics result containing data to be displayed.
+     */
     public void displayStatistics(StatisticsResult result) {
         System.out.println("\nStatistics Summary:");
         System.out.println("Total movies watched: " + result.getWatchedCount());
@@ -19,6 +25,11 @@ public class StatisticsView {
         }
     }
 
+    /**
+     * Displays statistics about the distribution of genres across movies.
+     *
+     * @param genreStatistics A map of genre names to their occurrence counts.
+     */
     public void displayGenreStatistics(Map<String, Integer> genreStatistics) {
         int maxCount = genreStatistics.values().stream().max(Integer::compare).orElse(0);
         int scale = Math.max(maxCount / 10, 1);
@@ -31,6 +42,11 @@ public class StatisticsView {
         });
     }
 
+    /**
+     * Displays statistics about movie ratings across different rating intervals.
+     *
+     * @param ratingStatistics A map where keys are rating intervals and values are counts of movies in those intervals.
+     */
     public void displayRatingStatistics(Map<String, Integer> ratingStatistics) {
         int maxCount = ratingStatistics.values().stream().max(Integer::compare).orElse(0);
         int scale = Math.max(maxCount / 10, 1);
@@ -43,6 +59,11 @@ public class StatisticsView {
         });
     }
 
+    /**
+     * Displays statistics related to movie directors and the count of movies they have directed.
+     *
+     * @param directorStatistics A map of director names to the count of movies they directed.
+     */
     public void displayDirectorStatistics(Map<String, Integer> directorStatistics) {
         int maxCount = directorStatistics.values().stream().max(Integer::compare).orElse(0);
         int scale = Math.max(maxCount / 10, 1);

@@ -2,6 +2,11 @@ package com.illiasalohub.movieapp.model;
 
 import java.util.Set;
 
+/**
+ * Encapsulates the results of various statistical analyses of the user movies.
+ * This class is used for information about total user statistics such as the count of watched movies, the oldest and newest movies,
+ * the most watched director, and ratings statistics.
+ */
 public class StatisticsResult {
     private int watchedCount;
     private Movie oldestMovie;
@@ -10,6 +15,10 @@ public class StatisticsResult {
     private Movie highestRatedMovie;
     private Movie lowestRatedMovie;
     private Set<String> genres;
+
+    /*
+     * Attributes getters and setters
+     */
 
     public int getWatchedCount() {
         return watchedCount;

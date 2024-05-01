@@ -17,12 +17,23 @@ public class MainController {
     private MoviesService moviesService;
     private MainView mainView;
     private ErrorView errorView;
+
+    /**
+     * Constructor for MainController.
+     *
+     * @param mainView the main view of the application where user interactions are handled.
+     * @param errorView the view for displaying error messages.
+     * @param moviesService the service for managing movie data.
+     */
     public MainController(MainView mainView, ErrorView errorView, MoviesService moviesService) {
         this.mainView = mainView;
         this.errorView = errorView;
         this.moviesService = moviesService;
     }
 
+    /**
+     * Starts the application by calling view with the welcome message and handling the initial user choices.
+     */
     public void start() {
         mainView.displayWelcomeMessage();
         int initialChoice = mainView.getInitialUserInput();
@@ -38,6 +49,11 @@ public class MainController {
         } while (choice != 4);
     }
 
+    /**
+     * Processes the user's choice from the start menu.
+     *
+     * @param choice the user's choice indicating which action to perform.
+     */
     private void processStartChoice(int choice) {
         switch (choice) {
             case 1:
@@ -58,6 +74,11 @@ public class MainController {
         }
     }
 
+    /**
+     * Handles user actions on individual movie items.
+     *
+     * @param choice the user's choice indicating what action to perform on the selected movie.
+     */
     private void processMovieActionChoice(int choice) {
         switch (choice) {
             case 1:
@@ -83,6 +104,11 @@ public class MainController {
         }
     }
 
+    /**
+     * Handles user actions on "Statistics" view .
+     *
+     * @param choice the user's choice indicating what action to perform on the selected statistic's data.
+     */
     private void processStatisticsChoice(int choice) {
         switch (choice) {
             case 1:
@@ -107,7 +133,9 @@ public class MainController {
     }
 
 
-
+    /**
+     * Adds a new movie to the collection after prompting the user for movie details.
+     */
     public void addNewMovie() {
         Movie movie = mainView.promptNewMovie();
         if (movie == null) {
@@ -119,6 +147,9 @@ public class MainController {
         System.out.println("Movie added successfully!");
     }
 
+    /**
+     * Displays all movies and handles next user actions from Display movies view.
+     */
     public void displayMovies() {
         List<Movie> movies = moviesService.getMovies();
         mainView.displayMovies(movies);
@@ -133,6 +164,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Collects and displays statistical information about the user's movies.
+     */
     public void statistics(){
         List<Movie> movies = moviesService.getMovies();
         if (!movies.isEmpty()) {
@@ -145,12 +179,9 @@ public class MainController {
         }
     }
 
-
-
-
-
-
-
+    /**
+     * Edits an existing movie's details. Prompts the user for a movie ID, retrieves the movie, and allows the user to modify its attributes.
+     */
     public void editMovie() {
         int movieId = mainView.promptForMovieId();
         Movie movie = moviesService.getMovieById(movieId);
@@ -163,6 +194,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Filters movies based on user-specified criteria such as title, director, genre, year range, status, or rating.
+     */
     public void filterMovies() {
         int filterChoice = mainView.getFilterChoice();
         List<Movie> filteredMovies;
@@ -200,6 +234,9 @@ public class MainController {
         mainView.displayMovies(filteredMovies);
     }
 
+    /**
+     * Orders the movies based on user-specified criteria and order direction.
+     */
     public void orderMovies() {
         int orderChoice = mainView.getOrderChoice();
         boolean isAscending = mainView.getSortOrder();
@@ -238,6 +275,9 @@ public class MainController {
         mainView.displayMovies(orderedMovies);
     }
 
+    /**
+     * Deletes a movie from the collection after prompting the user for a movie ID.
+     */
     public void deleteMovie() {
         int movieId = mainView.promptForMovieIdToDelete();
         boolean isDeleted = moviesService.deleteMovie(movieId);
@@ -249,6 +289,13 @@ public class MainController {
         }
     }
 
+    /**
+     * Processes the edit choices made by the user for a specific movie.
+     * Allows modification of the movie's title, director, genre, year, status, and rating.
+     *
+     * @param choice the user's choice of what field to edit
+     * @param movie the movie object to be edited
+     */
     private void processEditChoice(int choice, Movie movie) {
         String field = "";
         switch (choice) {
@@ -284,6 +331,11 @@ public class MainController {
         System.out.println("Movie updated successfully.\n");
     }
 
+    /**
+     * Processes the change of status for a movie, potentially updating the rating based on the new status.
+     *
+     * @param movie the movie whose status is to be edited
+     */
     private void processStatusEdit(Movie movie) {
         Statuses newStatus = mainView.getStatusFromChoice();
         movie.setStatus(newStatus);
@@ -295,6 +347,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Processes and displays total statistics for all movies, including count, average rating, etc.
+     */
     private void processTotalStatistics(){
         List<Movie> movies = moviesService.getMovies();
         if (movies.isEmpty()) {
@@ -305,6 +360,9 @@ public class MainController {
         mainView.statisticDisplay().displayStatistics(stats);
     }
 
+    /**
+     * Processes and displays statistics based on movie genres.
+     */
     public void processGenreStatistics() {
         List<Movie> movies = moviesService.getMovies();
         if (movies.isEmpty()) {
@@ -315,6 +373,9 @@ public class MainController {
         mainView.statisticDisplay().displayGenreStatistics(genreCounts);
     }
 
+    /**
+     * Processes and displays statistics based on movie ratings.
+     */
     public void processRatingStatistics() {
         List<Movie> movies = moviesService.getMovies();
         if (movies.isEmpty()) {
@@ -325,6 +386,9 @@ public class MainController {
         mainView.statisticDisplay().displayRatingStatistics(ratingStatistics);
     }
 
+    /**
+     * Processes and displays statistics based on directors of the movies.
+     */
     public void processDirectorsStatistics() {
         List<Movie> movies = moviesService.getMovies();
         if (movies.isEmpty()) {

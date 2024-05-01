@@ -5,7 +5,20 @@ import com.illiasalohub.movieapp.model.StatisticsResult;
 
 import java.util.*;
 
+/**
+ * Provides statistical analysis services for a movies.
+ * This class includes methods for calculating various statistics such as the oldest and newest movies,
+ * director frequencies, genre counts, and rating distributions.
+ */
 public class StatisticsService {
+
+    /**
+     * Calculates total statistics for user's movies.
+     *
+     * @param movies the list of movies from which to calculate statistics.
+     * @return a StatisticsResult object containing various computed statistics,
+     *         or null if the movie list is empty.
+     */
     public static StatisticsResult calculateTotalStatistics(List<Movie> movies) {
         if (movies.isEmpty()) {
             return null;
@@ -55,6 +68,12 @@ public class StatisticsService {
         return result;
     }
 
+    /**
+     * Calculates counts of movies by genre.
+     *
+     * @param movies the list of movies
+     * @return a map of genre names to their respective counts
+     */
     public static Map<String, Integer> calculateGenreCounts(List<Movie> movies) {
         Map<String, Integer> genreCount = new HashMap<>();
         for (Movie movie : movies) {
@@ -64,6 +83,12 @@ public class StatisticsService {
         return genreCount;
     }
 
+    /**
+     * Calculates the distribution of ratings.
+     *
+     * @param movies the list of movies
+     * @return a map where the keys are rating intervals and the values are the count of movies in each interval
+     */
     public static Map<String, Integer> calculateRatingStatistics(List<Movie> movies) {
         Map<String, Integer> ratingCounts = new TreeMap<>();
         for (Movie movie : movies) {
@@ -74,6 +99,12 @@ public class StatisticsService {
         return ratingCounts;
     }
 
+    /**
+     * Calculates counts of movies by director.
+     *
+     * @param movies the list of movies
+     * @return a map of director names to their respective counts
+     */
     public static Map<String, Integer> calculateDirectorStatistics(List<Movie> movies) {
         Map<String, Integer> directorCounts = new HashMap<>();
         for (Movie movie : movies) {

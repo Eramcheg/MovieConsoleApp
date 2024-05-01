@@ -7,25 +7,44 @@ import com.illiasalohub.movieapp.model.Movie;
 import com.illiasalohub.movieapp.model.MovieList;
 import com.illiasalohub.movieapp.model.Statuses;
 
-
+/**
+ * The main user interface class for interacting with users in the movie manager application.
+ * This class handles all user inputs and displays related to movie management tasks.
+ */
 public class MainView {
     private Scanner scanner = new Scanner(System.in);
     private StatisticsView statisticsView;
 
+    /**
+     * Constructs a MainView and initializes its StatisticsView.
+     */
     public MainView(){
         statisticsView = new StatisticsView();
     }
 
+    /**
+     * Displays the initial welcome message and options to the user.
+     */
     public void displayWelcomeMessage() {
         System.out.println("Welcome to the Movie Management Console Application!\n");
         System.out.println("Choose an option by entering corresponding number:");
         System.out.println("1. Start work with the program");
         System.out.println("2. Quit");
     }
+
+    /**
+     * Prompts for and returns the initial user choice to continue or quit.
+     *
+     * @return the user's choice as an integer
+     */
     public int getInitialUserInput() {
         System.out.print("Enter your choice to continue or quit: ");
         return readIntSafe();
     }
+
+    /**
+     * Displays the main menu of options related to movie management.
+     */
     public void displayStartMenu() {
         System.out.println("\nSelect an option:");
         System.out.println("1. Add a new movie");
@@ -34,6 +53,9 @@ public class MainView {
         System.out.println("4. Exit");
     }
 
+    /**
+     * Displays the menu for actions related to all movies.
+     */
     public void displayAllMoviesActionMenu() {
         System.out.println("\nSelect an option:");
         System.out.println("1. Edit movie");
@@ -44,6 +66,9 @@ public class MainView {
         System.out.println("6. Back to main menu");
     }
 
+    /**
+     * Displays the statistics menu with options for different statistical data.
+     */
     public void displayStatisticsMenu() {
         System.out.println("\nSelect an option:");
         System.out.println("1. Total statistics");
@@ -53,19 +78,40 @@ public class MainView {
         System.out.println("5. Back to main menu");
     }
 
+    /**
+     * Returns the instance of StatisticsView associated with this view.
+     *
+     * @return the statistics view object
+     */
     public StatisticsView statisticDisplay(){
         return statisticsView;
     }
 
+    /**
+     * Prompts the user for a choice and returns it.
+     *
+     * @return the user's choice as an integer
+     */
     public int getUserInput() {
         System.out.print("Enter your choice: ");
         return readIntSafe();
     }
 
+    /**
+     * Checks if the user input indicates a desire to quit.
+     *
+     * @param input the user's input
+     * @return true if the input is 'quit', false otherwise
+     */
     private boolean wantsToQuit(String input) {
         return "quit".equalsIgnoreCase(input.trim());
     }
 
+    /**
+     * Prompts the user for details to create a new Movie object.
+     *
+     * @return a new Movie object or null if the user decides to quit
+     */
     public Movie promptNewMovie() {
 
         String title="";
@@ -99,6 +145,11 @@ public class MainView {
         }
     }
 
+    /**
+     * Prompts the user to enter the release year of the movie, ensuring it is valid based on the first movie year.
+     *
+     * @return the year entered by the user if it is valid
+     */
     public int getMovieYear() {
         int year;
         while (true) {
@@ -116,6 +167,11 @@ public class MainView {
         }
     }
 
+    /**
+     * Helper method to safely read an integer from the user input.
+     *
+     * @return the integer entered by the user, ensuring it is a valid number
+     */
     public int readIntSafe() {
 
         while (true) {
@@ -127,6 +183,11 @@ public class MainView {
         }
     }
 
+    /**
+     * Prompts the user to select a movie status from predefined options.
+     *
+     * @return the status chosen by the user
+     */
     public Statuses getStatusFromChoice() {
         while (true) {  // Infinite loop to ensure input is received correctly
             System.out.println("Choose status (1- Want to Watch, 2- Watching, 3- Already Watched):");
@@ -145,6 +206,11 @@ public class MainView {
         }
     }
 
+    /**
+     * Prompts the user to enter a movie rating between 1 and 10.
+     *
+     * @return the rating entered by the user
+     */
     public double processRating() {
         while (true) {
             System.out.println("Enter your rating (e.g., 9.5 or 9,5):");
@@ -163,6 +229,11 @@ public class MainView {
         }
     }
 
+    /**
+     * Displays a list of movies with details.
+     *
+     * @param movies the list of movies to display
+     */
     public void displayMovies(List<Movie> movies) {
         if (movies.isEmpty()) {
             System.out.println("No movies to display.");
@@ -178,6 +249,12 @@ public class MainView {
         System.out.println("=======================================================");
     }
 
+    /**
+     * Constructs a detailed string for a movie based on the current display type setting.
+     *
+     * @param movie the movie to generate details for
+     * @return a string representation of the movie details
+     */
     private String movieDetails(Movie movie) {
         String output;
         if (MovieList.displayingType == 1) {
@@ -196,11 +273,21 @@ public class MainView {
         return output;
     }
 
+    /**
+     * Prompts the user for a movie ID to be edited.
+     *
+     * @return the ID entered by the user
+     */
     public int promptForMovieId() {
         System.out.print("Write movie ID you want to edit: ");
         return readIntSafe();
     }
 
+    /**
+     * Displays detailed information about a specific movie.
+     *
+     * @param movie the movie to display details for; if null, a message indicating no movie found is displayed
+     */
     public void displayMovie(Movie movie) {
 
         if (movie != null) {
@@ -221,6 +308,12 @@ public class MainView {
         }
     }
 
+    /**
+     * Prompts the user to choose a field of the movie to edit.
+     *
+     * @param movie the movie whose fields are potential candidates for editing
+     * @return the user's choice corresponding to the field they want to edit
+     */
     public int getEditChoice(Movie movie) {
         System.out.println("What do you want to edit?");
         System.out.println("1. Title");
@@ -236,11 +329,22 @@ public class MainView {
         return readIntSafe();
     }
 
+    /**
+     * Prompts the user for a new value for a specific field.
+     *
+     * @param field the field for which to input a new value
+     * @return the new value as entered by the user
+     */
     public String getNewValue(String field) {
         System.out.print("Enter new " + field + ": ");
         return scanner.nextLine();
     }
 
+    /**
+     * Prompts the user to choose a field by which to filter the movies.
+     *
+     * @return the user's choice corresponding to the filter criteria
+     */
     public int getFilterChoice() {
         System.out.println("\nBy which field you want to filter?");
         System.out.println("1. Title");
@@ -254,11 +358,21 @@ public class MainView {
         return readIntSafe();
     }
 
+    /**
+     * Prompts the user for a value to use as a filter.
+     *
+     * @return the filter value as a string
+     */
     public String getFilterValue() {
         System.out.print("Enter filter value: ");
         return scanner.nextLine();
     }
 
+    /**
+     * Prompts the user to enter a range of years for filtering.
+     *
+     * @return an array where the first element is the start year and the second is the end year
+     */
     public int[] getYearRange() {
         System.out.print("Enter start year: ");
         int startYear = readIntSafe();
@@ -267,6 +381,11 @@ public class MainView {
         return new int[]{startYear, endYear};
     }
 
+    /**
+     * Prompts the user to enter a range for movie ratings.
+     *
+     * @return an array where the first element is the minimum rating and the second is the maximum rating
+     */
     public double[] getRatingRange() {
         System.out.print("Enter minimum rating (1-10): ");
         double minRating = Double.parseDouble(scanner.nextLine());
@@ -275,6 +394,11 @@ public class MainView {
         return new double[]{minRating, maxRating};
     }
 
+    /**
+     * Prompts the user to select a field by which to order movies.
+     *
+     * @return the user's choice as an integer corresponding to the field to order by
+     */
     public int getOrderChoice() {
         System.out.println("Choose the field to order movies by:");
         System.out.println("1. Title");
@@ -287,6 +411,11 @@ public class MainView {
         return readIntSafe();
     }
 
+    /**
+     * Prompts the user to select the sort order for displaying movies.
+     *
+     * @return true if the user chooses ascending order, false if descending
+     */
     public boolean getSortOrder() {
         System.out.println("Select sort order:");
         System.out.println("1. Ascending");
@@ -296,6 +425,10 @@ public class MainView {
         return choice != 2;
     }
 
+    /**
+     * Allows the user to set the display type for listing movies.
+     * The display type can be a detailed list format or a compact paragraph format.
+     */
     public void setDisplayType() {
         System.out.println("Choose the display format:");
         System.out.println("1. Detailed list format");
@@ -311,6 +444,11 @@ public class MainView {
         }
     }
 
+    /**
+     * Prompts the user for the ID of the movie they want to delete.
+     *
+     * @return the ID of the movie to be deleted as entered by the user
+     */
     public int promptForMovieIdToDelete() {
         System.out.print("Enter the ID of the movie you want to delete: ");
         return readIntSafe();  // Uses a method to read the input safely as an integer
