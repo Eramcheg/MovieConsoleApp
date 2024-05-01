@@ -1,11 +1,14 @@
-package com.illiasalohub.movieapp.model;
+package com.illiasalohub.movieapp.services;
+
+import com.illiasalohub.movieapp.model.Movie;
+import com.illiasalohub.movieapp.model.StatisticsResult;
 
 import java.util.*;
 
-public class StatisticsCalculator {
+public class StatisticsService {
     public static StatisticsResult calculateTotalStatistics(List<Movie> movies) {
         if (movies.isEmpty()) {
-            return null; 
+            return null;
         }
 
         StatisticsResult result = new StatisticsResult();
@@ -21,24 +24,24 @@ public class StatisticsCalculator {
             genres.add(movie.getGenre());
 
             directorCount.put(movie.getDirector(), directorCount.getOrDefault(movie.getDirector(), 0) + 1);
-            
+
             if (oldestMovie == null || movie.getYear() < oldestMovie.getYear()) {
                 oldestMovie = movie;
             }
-            
+
             if (newestMovie == null || movie.getYear() > newestMovie.getYear()) {
                 newestMovie = movie;
             }
-            
+
             if (highestRatedMovie == null || movie.getRating() > highestRatedMovie.getRating()) {
                 highestRatedMovie = movie;
             }
-            
+
             if (lowestRatedMovie == null || movie.getRating() < lowestRatedMovie.getRating() && movie.getRating()>0.0) {
                 lowestRatedMovie = movie;
             }
         }
-        
+
         String mostWatchedDirector = Collections.max(directorCount.entrySet(), Map.Entry.comparingByValue()).getKey();
 
         result.setWatchedCount(movies.size());
@@ -80,4 +83,3 @@ public class StatisticsCalculator {
         return directorCounts;
     }
 }
-
