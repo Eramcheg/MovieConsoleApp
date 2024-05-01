@@ -8,11 +8,11 @@ import com.illiasalohub.movieapp.model.MovieList;
 import com.illiasalohub.movieapp.model.Statuses;
 
 
-public class MovieView {
+public class MainView {
     private Scanner scanner = new Scanner(System.in);
     private StatisticsView statisticsView;
 
-    public MovieView(){
+    public MainView(){
         statisticsView = new StatisticsView();
     }
 
@@ -31,7 +31,7 @@ public class MovieView {
         System.out.println("1. Add a new movie");
         System.out.println("2. Display all movies");
         System.out.println("3. Display statistics");
-        System.out.println("4. Save and Exit");
+        System.out.println("4. Exit");
     }
 
     public void displayAllMoviesActionMenu() {

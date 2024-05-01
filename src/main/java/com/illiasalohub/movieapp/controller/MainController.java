@@ -5,36 +5,36 @@ import com.illiasalohub.movieapp.model.Movie;
 import com.illiasalohub.movieapp.model.StatisticsResult;
 import com.illiasalohub.movieapp.model.StatisticsCalculator;
 import com.illiasalohub.movieapp.model.Statuses;
-import com.illiasalohub.movieapp.views.MovieView;
+import com.illiasalohub.movieapp.views.MainView;
 import com.illiasalohub.movieapp.views.ErrorView;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class MovieController {
+public class MainController {
     private MovieList movieList;
-    private MovieView movieView;
+    private MainView mainView;
     private ErrorView errorView;
-    public MovieController(MovieList movieList, MovieView movieView, ErrorView errorView) {
+    public MainController(MovieList movieList, MainView mainView, ErrorView errorView) {
         this.movieList = movieList;
-        this.movieView = movieView;
+        this.mainView = mainView;
         this.errorView = errorView;
     }
 
     public void start() {
-        movieView.displayWelcomeMessage();
-        int initialChoice = movieView.getInitialUserInput();
+        mainView.displayWelcomeMessage();
+        int initialChoice = mainView.getInitialUserInput();
         if (initialChoice == 2) {
             System.out.println("Exiting... Goodbye!");
             return; // Exit the program
         }
         int choice;
         do {
-            movieView.displayStartMenu();
-            choice = movieView.getUserInput();
+            mainView.displayStartMenu();
+            choice = mainView.getUserInput();
             processChoice(choice);
-        } while (choice != 5);
+        } while (choice != 4);
     }
 
     private void processChoice(int choice) {
@@ -69,7 +69,7 @@ public class MovieController {
                 orderMovies();
                 break;
             case 4:
-                movieView.setDisplayType();
+                mainView.setDisplayType();
                 break;
             case 5:
                 deleteMovie();
@@ -79,8 +79,8 @@ public class MovieController {
                 break;
             default:
                 errorView.displayError("Invalid choice, please select a valid option.");
-                movieView.displayAllMoviesActionMenu();
-                int actionChoice = movieView.getUserInput();
+                mainView.displayAllMoviesActionMenu();
+                int actionChoice = mainView.getUserInput();
                 processMovieActionChoice(actionChoice);
         }
     }
@@ -104,14 +104,16 @@ public class MovieController {
                 break;
             default:
                 errorView.displayError("Invalid choice, please select a valid option.");
-                movieView.displayAllMoviesActionMenu();
-                int actionChoice = movieView.getUserInput();
+                mainView.displayAllMoviesActionMenu();
+                int actionChoice = mainView.getUserInput();
                 processMovieActionChoice(actionChoice);
         }
     }
 
+
+
     public void addNewMovie() {
-        Movie movie = movieView.promptNewMovie();
+        Movie movie = mainView.promptNewMovie();
         if (movie == null) {
             errorView.displayError("Adding new movie canceled.");
             return;
@@ -123,12 +125,12 @@ public class MovieController {
 
     public void displayMovies() {
         List<Movie> movies = movieList.getMovies();
-        movieView.displayMovies(movies);
+        mainView.displayMovies(movies);
         if (!movies.isEmpty()) {
             int actionChoice;
             do {
-                movieView.displayAllMoviesActionMenu();
-                actionChoice = movieView.getUserInput();
+                mainView.displayAllMoviesActionMenu();
+                actionChoice = mainView.getUserInput();
                 processMovieActionChoice(actionChoice);
             } while (actionChoice != 6);
 
@@ -140,8 +142,8 @@ public class MovieController {
         if (!movies.isEmpty()) {
             int actionChoice;
             do {
-                movieView.displayStatisticsMenu();
-                actionChoice = movieView.getUserInput();
+                mainView.displayStatisticsMenu();
+                actionChoice = mainView.getUserInput();
                 processStatisticsChoice(actionChoice);
             } while (actionChoice != 5);
         }
@@ -154,11 +156,11 @@ public class MovieController {
 
 
     public void editMovie() {
-        int movieId = movieView.promptForMovieId();
+        int movieId = mainView.promptForMovieId();
         Movie movie = movieList.getMovieById(movieId);
         if (movie != null) {
-            movieView.displayMovie(movie);
-            int editChoice = movieView.getEditChoice(movie);
+            mainView.displayMovie(movie);
+            int editChoice = mainView.getEditChoice(movie);
             processEditChoice(editChoice, movie);
         } else {
             errorView.displayError("Movie not found!");
@@ -166,32 +168,32 @@ public class MovieController {
     }
 
     public void filterMovies() {
-        int filterChoice = movieView.getFilterChoice();
+        int filterChoice = mainView.getFilterChoice();
         List<Movie> filteredMovies;
 
         switch (filterChoice) {
             case 1:  // Title
-                String title = movieView.getFilterValue();
+                String title = mainView.getFilterValue();
                 filteredMovies = movieList.filterByTitle(title);
                 break;
             case 2:  // Director
-                String director = movieView.getFilterValue();
+                String director = mainView.getFilterValue();
                 filteredMovies = movieList.filterByDirector(director);
                 break;
             case 3:  // Genre
-                String genre = movieView.getFilterValue();
+                String genre = mainView.getFilterValue();
                 filteredMovies = movieList.filterByGenre(genre);
                 break;
             case 4:  // Year Range
-                int[] years = movieView.getYearRange();
+                int[] years = mainView.getYearRange();
                 filteredMovies = movieList.filterByYearRange(years[0], years[1]);
                 break;
             case 5:  // Status
-                Statuses status = Statuses.values()[movieView.readIntSafe() - 1];
+                Statuses status = Statuses.values()[mainView.readIntSafe() - 1];
                 filteredMovies = movieList.filterByStatus(status);
                 break;
             case 6:  // Rating
-                double[] ratings = movieView.getRatingRange();
+                double[] ratings = mainView.getRatingRange();
                 filteredMovies = movieList.filterByRatingRange(ratings[0], ratings[1]);
                 break;
             default:
@@ -199,12 +201,12 @@ public class MovieController {
                 return;
         }
 
-        movieView.displayMovies(filteredMovies);
+        mainView.displayMovies(filteredMovies);
     }
 
     public void orderMovies() {
-        int orderChoice = movieView.getOrderChoice();
-        boolean isAscending = movieView.getSortOrder();
+        int orderChoice = mainView.getOrderChoice();
+        boolean isAscending = mainView.getSortOrder();
         List<Movie> orderedMovies = movieList.getMovies();
 
         Comparator<Movie> comparator;
@@ -237,11 +239,11 @@ public class MovieController {
         }
 
         orderedMovies.sort(comparator);
-        movieView.displayMovies(orderedMovies);
+        mainView.displayMovies(orderedMovies);
     }
 
     public void deleteMovie() {
-        int movieId = movieView.promptForMovieIdToDelete();
+        int movieId = mainView.promptForMovieIdToDelete();
         boolean isDeleted = movieList.deleteMovieById(movieId);
         if (isDeleted) {
             System.out.println("Movie deleted successfully.");
@@ -256,18 +258,18 @@ public class MovieController {
         switch (choice) {
             case 1:
                 field = "title";
-                movie.setTitle(movieView.getNewValue(field));
+                movie.setTitle(mainView.getNewValue(field));
                 break;
             case 2:
                 field = "director";
-                movie.setDirector(movieView.getNewValue(field));
+                movie.setDirector(mainView.getNewValue(field));
                 break;
             case 3:
                 field = "genre";
-                movie.setGenre(movieView.getNewValue(field));
+                movie.setGenre(mainView.getNewValue(field));
                 break;
             case 4: //Year
-                int newYear = movieView.getMovieYear();
+                int newYear = mainView.getMovieYear();
                 movie.setYear(newYear);
                 break;
             case 5: //Status
@@ -275,7 +277,7 @@ public class MovieController {
                 break;
             case 6: //Rating
                 if (movie.getStatus() == Statuses.ALREADY_WATCHED) {
-                    double newRating = movieView.processRating();
+                    double newRating = mainView.processRating();
                     movie.setRating(newRating);
                 } else {
                     System.out.println("Rating can only be set if the status is 'Already Watched'.");
@@ -287,10 +289,10 @@ public class MovieController {
     }
 
     private void processStatusEdit(Movie movie) {
-        Statuses newStatus = movieView.getStatusFromChoice();
+        Statuses newStatus = mainView.getStatusFromChoice();
         movie.setStatus(newStatus);
         if (newStatus == Statuses.ALREADY_WATCHED && movie.getRating() == 0.0) {
-            double newRating = movieView.processRating();
+            double newRating = mainView.processRating();
             movie.setRating(newRating);
         } else if (newStatus != Statuses.ALREADY_WATCHED && movie.getRating() > 0.0) {
             movie.setRating(0.0);
@@ -304,7 +306,7 @@ public class MovieController {
             return;
         }
         StatisticsResult stats = StatisticsCalculator.calculateTotalStatistics(movies);
-        movieView.statisticDisplay().displayStatistics(stats);
+        mainView.statisticDisplay().displayStatistics(stats);
     }
 
     public void processGenreStatistics() {
@@ -314,7 +316,7 @@ public class MovieController {
             return;
         }
         Map<String, Integer> genreCounts = StatisticsCalculator.calculateGenreCounts(movies);
-        movieView.statisticDisplay().displayGenreStatistics(genreCounts);
+        mainView.statisticDisplay().displayGenreStatistics(genreCounts);
     }
 
     public void processRatingStatistics() {
@@ -324,7 +326,7 @@ public class MovieController {
             return;
         }
         Map<String, Integer> ratingStatistics  = StatisticsCalculator.calculateRatingStatistics(movies);
-        movieView.statisticDisplay().displayRatingStatistics(ratingStatistics);
+        mainView.statisticDisplay().displayRatingStatistics(ratingStatistics);
     }
 
     public void processDirectorsStatistics() {
@@ -334,6 +336,6 @@ public class MovieController {
             return;
         }
         Map<String, Integer> directorsStatistics  = StatisticsCalculator.calculateDirectorStatistics(movies);
-        movieView.statisticDisplay().displayDirectorStatistics(directorsStatistics);
+        mainView.statisticDisplay().displayDirectorStatistics(directorsStatistics);
     }
 }
