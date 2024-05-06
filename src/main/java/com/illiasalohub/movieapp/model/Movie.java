@@ -1,5 +1,8 @@
 package com.illiasalohub.movieapp.model;
 
+/**
+ * Represents a movie properties within the movie manager application.
+ */
 public class Movie {
     public static final int FIRST_MOVIE_YEAR = 1888;
     private static int nextId = 1;

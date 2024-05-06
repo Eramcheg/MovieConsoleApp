@@ -9,6 +9,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles the loading and saving of movie data to and from a JSON file.
+ * This class encapsulates the functionality required to serialize and deserialize
+ * movie data using Gson library.
+ */
 public class DataProcessor {
     private String filePath = "movies.json";
     private Gson gson = new Gson();

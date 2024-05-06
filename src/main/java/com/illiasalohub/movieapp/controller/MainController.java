@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Controller for managing the flow of data in the movie manager application and updating the view in response to user interactions.
+ */
 public class MainController {
     private MoviesService moviesService;
     private MainView mainView;

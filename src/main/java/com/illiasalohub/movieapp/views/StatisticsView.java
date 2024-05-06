@@ -2,8 +2,11 @@ package com.illiasalohub.movieapp.views;
 import com.illiasalohub.movieapp.model.StatisticsResult;
 
 import java.util.Map;
-import java.util.TreeMap;
 
+/**
+ * Handles the display of statistical data related to movies.
+ * This class provides methods to visualize different statistical information about users movies.
+ */
 public class StatisticsView {
 
     /**

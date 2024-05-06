@@ -2,6 +2,10 @@ package com.illiasalohub.movieapp.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Represents a collection of movies. This class provides methods for managing the list of movies.
+ */
 public class MovieList {
     public static int displayingType = 1;
     private List<Movie> movies;
