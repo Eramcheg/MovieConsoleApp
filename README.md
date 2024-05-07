@@ -50,14 +50,14 @@ Quentin Tarantino and Tarantino as different directors when generates movies sta
 - **User's Rating**: Sixth value will be requested in the situation if user's movie status was 3. Already watched. This values asks for user's rating of the watched film. This value can be written only 
 in the forms 3 (Integer value), 9.4 (Decimal with dot) or 9,4 (Decimal with comma). <br>
           
-- 2.2. Display all movies
-     This option dispays to user all his current movies in the user's list and opens Movies menu to manage existing movies and movies display. <br>
+### 2.2. Display all movies
+This option dispays to user all his current movies in the user's list and opens Movies menu to manage existing movies and movies display. <br>
  
-- 2.3. Display statistics
-     This option opens Statistics menu to calculate and show statistics about existing user's movies. <br>
+### 2.3. Display statistics
+This option opens Statistics menu to calculate and show statistics about existing user's movies. <br>
 
-- 2.4. Exit
-     This option exit the program. <br>
+### 2.4. Exit
+This option exit the program. <br>
 
 3. **Movies Menu**<br>
    
