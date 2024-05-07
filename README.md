@@ -39,7 +39,7 @@ To start the program, follow the steps below:
    - 2.2. Display all movies
    - 2.3. Display statistics
 
-3. **Movies Menu**
+3. **Movies Menu**<br>
    
  ![Alt Text](Images/Movies_menu.png)
   - 3.1. Edit movie
