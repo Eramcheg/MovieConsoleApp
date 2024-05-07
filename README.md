@@ -20,6 +20,9 @@ To start the program, follow the steps below:
     ```mvn exec:java```
 
 ## Usage
+### 0. Important!
+To use all options user needs to write **numbers** from the menus in the console where it requests choices. <br>
+If system requests **values** to details, user should write **values** corresponding to rules you can find [here](movies_rules).<br>
 
 ### 1. **Welcome Menu**<br>
    When the user launches the application, the first screen they encounter is the Welcome Menu. This menu serves as the gateway to the application, offering two primary functions:
