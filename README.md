@@ -91,23 +91,22 @@ When user chooses this option, app starts process of applying filter by requesti
         5. Status <br>
         6. Rating <br>
 - **For text data**: System will ask for text based filter value (Title, Director, Genre)
-- **For Year and Rating **: System will ask for range (Year From and Year to) to show movies within this range.
+- **For Year and Rating**: System will ask for range (Year From and Year to) to show movies within this range.
 - **For statuses**: System will ask user for specific status to show movies with this status. <br>
 
 #### 3.3. Order movies displaying
 This option allows users to order displaying movies.
 When user chooses this option, app starts process of applying order by requesting appropriate data:<br>
 - **Field to order**: Firstly it asks user for the ordering field:<br>
-  1. Title <br>
-  2. Director <br>
-  3. Genre <br>
-  4. Year <br>
-  5. Status <br>
-  6. Rating <br>
+         1. Title <br>
+         2. Director <br>
+         3. Genre <br>
+         4. Year <br>
+         5. Status <br>
+         6. Rating <br>
 - **Order type**: System asks user for sort order: <br>
-  1. Ascending (From the lowest to greates)
-  2. Descending (From the greatest to lowest)
-  <br>
+         1. Ascending (From the lowest to greates) <br>
+         2. Descending (From the greatest to lowest)<br>
   
 #### 3.4. Set display type
 This option allows users to use different type of displaying movies.
