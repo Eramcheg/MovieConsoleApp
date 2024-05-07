@@ -25,11 +25,11 @@ To start the program, follow the steps below:
    When the user launches the application, the first screen they encounter is the Welcome Menu. This menu serves as the gateway to the application, offering two primary functions:
    - **Start Application**: This option allows the user to enter the main interface of the application where they can manage and interact with their movies.
    - **Quit**: This option provides a way for users to exit the application if it was opened accidently.
-     
+     <br>
  ![Alt Text](Images/Welcome_menu.png)
 
 2. **Main Menu**<br>
- Once inside the application, users are presented with the Main Menu, which serves as the central hub for all primary interactions. From here, users can manage their movie collection with the following options:
+ Once inside the application, users are presented with the Main Menu, which serves as the central hub for all primary interactions. From here, users can manage their movie collection with the following options:<br>
  ![Alt Text](Images/Main_menu.png)
    - 2.1. Add a new movie
           This option allows users to input and save new movie details into their collection, expanding their movie database.
