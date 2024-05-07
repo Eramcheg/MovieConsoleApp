@@ -40,8 +40,15 @@ To start the program, follow the steps below:
           - Third value - main movie genre. It can be written in any way (Action, War, Scifi, Science Fiction, etc.). But user has to be aware of misspelling.<br>
           - Fourth value - movie release year. It can be written only in digital format (2021, 2004, 1994). But user can't write year of movie that is less than release year of first movie ever (Officially first 
           movie was "Roundhay Garden Scene" in 1888, [source](https://en.wikipedia.org/wiki/Roundhay_Garden_Scene#:~:text=Roundhay%20Garden%20Scene%20is%20a,Kingdom%20on%2016%20November%201888.)) <br>
+          - Fifth value - user's movie status. It can be either 1. Want to watch, 2. Watching, 3. Already watched. To avoid situationg with misspelling user has to write only corresponding numbers (1,2,3). <br>
+          - Sixth value will be requested in the situation if user's movie status was 3. Already watched. This values asks for user's rating of the watched film. This value can be written only in the forms 
+          3 (Integer value), 9.4 (Decimal with dot) or 9,4 (Decimal with comma). <br>
+          
    - 2.2. Display all movies
+          This option dispays to user all his current movies in the user's list and opens Movies menu to manage existing movies and movies display. <br>
+      
    - 2.3. Display statistics
+          This option opens Statistics menu to calculate and show statistics about existing user's movies. <br>
 
 3. **Movies Menu**<br>
    
