@@ -125,6 +125,10 @@ When user chooses this option, app asks user to choose movie ID. Example: <br>
 - **Delete example**:<br>
 ![Alt Text](Images/example_delete.png)<br>
 
+#### 3.6. Back to main menu <br>
+This option returns user to main menu.
+
+
 <a name="statistics"></a>
 ### 4. **Statistics Menu**<br>
 Once user chooses "Display statistics" option on main menu, it displays menu of statistics options user can found about movie list. In the menu user can see next statistics: <br>
@@ -132,13 +136,13 @@ Once user chooses "Display statistics" option on main menu, it displays menu of 
 
 #### 4.1. Total statistics
 This option shows users total statistics about movie collection. Total statistics includes:<br>
-     1. **Total movies added to the collection**
-     2. **Oldest movie from the collection**
-     3. **Newest movie from the collection**
-     4. **The director from which the user has the most added movies**
-     5. **Highest rated movie**
-     6. **Lowest rated movie** 
-     7. **All genres from collection user covered**
+     1. **Total movies added to the collection**<br>
+     2. **Oldest movie from the collection**<br>
+     3. **Newest movie from the collection**<br>
+     4. **The director from which the user has the most added movies**<br>
+     5. **Highest rated movie**<br>
+     6. **Lowest rated movie** <br>
+     7. **All genres from collection user covered**<br>
 #### 4.2. Movies by genres
 This option shows user's statistics about genres covered in the movies collection in the form of horizontal bar chart, where on the left there are genres, and on the right(top of each bar) total number of movies of this genre. Example: <br>
 
@@ -152,5 +156,19 @@ This option shows user's statistics about user's rating in the movies collection
 #### 4.4. Movies by directors
 This option shows user's statistics about directors covered in the movies collection in the form of horizontal bar chart, where on the left there are directors, and on the right(top of each bar) total number of movies of this director. Example: <br>
 
-![Alt Text](Images/directors_statistics.png)
-   
+![Alt Text](Images/directors_statistics.png)<br>
+
+#### 4.5. Back to main menu <br>
+This option returns user to main menu.
+
+## Contributing
+This project is for educational purposes.
+
+## Authors
+This project was developed by Salohub Illia, student of Charles University in Prague.
+
+## License
+This project is licensed under the [MIT License](https://opensource.org/license/MIT/).
+
+## Acknowledgment
+This project was developed as part of the Programming in Java Language[NPRG013]course. Special thanks to the course instructors.
