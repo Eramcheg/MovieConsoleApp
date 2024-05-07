@@ -26,18 +26,22 @@ To start the program, follow the steps below:
    - **Start Application**: This option allows the user to enter the main interface of the application where they can manage and interact with their movies.
    - **Quit**: This option provides a way for users to exit the application if it was opened accidently.
      
-![Alt Text](Images/Welcome_menu.png)
+ ![Alt Text](Images/Welcome_menu.png)
 
-3. **Main Menu**<br>
-
-![Alt Text](Images/Main_menu.png)
+2. **Main Menu**<br>
+ Once inside the application, users are presented with the Main Menu, which serves as the central hub for all primary interactions. From here, users can manage their movie collection with the following options:
+ ![Alt Text](Images/Main_menu.png)
    - 2.1. Add a new movie
+          This option allows users to input and save new movie details into their collection, expanding their movie database.
+          When user chooses this option, app starts process of adding new movie by requesting appropriate data:
+          - First it asks for Movie Title (That can be in any form), or user can type 'quit' to stop process of adding. It requests 'quit' with a small first letter to avoid situations when movie has exact same 
+          name. It user wants to add "quit" as a movie title, it has to start with a capital letter - "Quit". 
    - 2.2. Display all movies
    - 2.3. Display statistics
 
-4. **Movies Menu**
+3. **Movies Menu**
    
-![Alt Text](Images/Movies_menu.png)
+ ![Alt Text](Images/Movies_menu.png)
   - 3.1. Edit movie
   - 3.2. Filter movies displaying
   - 3.3. Order movies displaying
@@ -46,7 +50,7 @@ To start the program, follow the steps below:
    
 4. **Statistics Menu**<br>
 
-![Alt Text](Images/Statistics_menu.png)
+ ![Alt Text](Images/Statistics_menu.png)
   - 4.1. Total statistics
   - 4.2. Movies by genres
   - 4.3. Rating statistics
