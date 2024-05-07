@@ -35,6 +35,9 @@ Once inside the application, users are presented with the Main Menu, which serve
 #### 2.1. Add a new movie <br>
 This option allows users to input and save new movie details into their collection, expanding their movie database.
 When user chooses this option, app starts process of adding new movie by requesting appropriate data:<br>
+
+<a name="movies_rules"></a>
+##### **Rules of movies details**<br>
 - **Movie Title**: First it asks for Movie Title (That can be in any form), or user can type 'quit' to stop process of adding. It requests 'quit' with a small first letter to avoid situations when movie 
 has exact same name. It user wants to add "quit" as a movie title, it has to start with a capital letter - "Quit".<br>
 - **Director**: Second value - is a director of a movie, also can be written in any form (Quentin Tarantino, Tarantino, Quentin). But user has to be aware of misspelling, because system recognise 
@@ -60,14 +63,68 @@ This option opens Statistics menu to calculate and show statistics about existin
 This option exit the program. <br>
 
 ### 3. **Movies Menu**<br>
+Once user chooses "Display all movies" option on main menu, it displays all user's movies and menu to manage these movies. In the menu user can do next: 
 
 ![Alt Text](Images/Movies_menu.png)
+
 #### 3.1. Edit movie
+This option allows users to edit and save movie details.
+When user chooses this option, app starts process of editing the movie by requesting appropriate data:<br>
+- **Detail to edit**: Firstly it asks user for the detail to edit:<br>
+        1. Title <br>
+        2. Director <br>
+        3. Genre <br>
+        4. Year <br>
+        5. Status <br>
+        6. Rating (Only if status is Already watched)<br>
+- **New detail value**: Then it asks for new detail value based on the rules, described [here](#movies_rules). <br>
+**Important!** If user decided to change status to Already watched, then system will ask user for rating of that movie.
+ 
 #### 3.2. Filter movies displaying
+This option allows users to filter displaying movies.
+When user chooses this option, app starts process of applying filter by requesting appropriate data:<br>
+- **Field to filter**: Firstly it asks user for the filtering field:<br>
+        1. Title <br>
+        2. Director <br>
+        3. Genre <br>
+        4. Year <br>
+        5. Status <br>
+        6. Rating <br>
+- **For text data**: System will ask for text based filter value (Title, Director, Genre)
+- **For Year and Rating **: System will ask for range (Year From and Year to) to show movies within this range.
+- **For statuses**: System will ask user for specific status to show movies with this status. <br>
+
 #### 3.3. Order movies displaying
+This option allows users to order displaying movies.
+When user chooses this option, app starts process of applying order by requesting appropriate data:<br>
+- **Field to order**: Firstly it asks user for the ordering field:<br>
+  1. Title <br>
+  2. Director <br>
+  3. Genre <br>
+  4. Year <br>
+  5. Status <br>
+  6. Rating <br>
+- **Order type**: System asks user for sort order: <br>
+  1. Ascending (From the lowest to greates)
+  2. Descending (From the greatest to lowest)
+  <br>
+  
 #### 3.4. Set display type
+This option allows users to use different type of displaying movies.
+When user chooses this option, app asks user to choose displaying type:<br>
+  1. **Detailed list format** Example: <br>
+     ![Alt Text](Images/detailed_style.png)<br>
+  2. **Compact paragraph format** Example: <br>
+     ![Alt Text](Images/compact_style.png) <br>
+     
 #### 3.5. Delete movie
-   
+This option allows users to delete movies by it's ID (Provided in the display).
+When user chooses this option, app asks user to choose movie ID. Example: <br>
+- **Id location**:<br>
+![Alt Text](Images/id_location.png)<br>
+- **Delete example**:<br>
+![Alt Text](Images/example_delete.png)<br>
+
 ### 4. **Statistics Menu**<br>
 
 ![Alt Text](Images/Statistics_menu.png)
