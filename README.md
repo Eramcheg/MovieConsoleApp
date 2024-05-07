@@ -42,7 +42,7 @@ Quentin Tarantino and Tarantino as different directors when generates movies sta
 - **Main Genre**: Third value - main movie genre. It can be written in any way (Action, War, Scifi, Science Fiction, etc.). But user has to be aware of misspelling.<br>
 - **Release Year**: Fourth value - movie release year. It can be written only in digital format (2021, 2004, 1994). But user can't write year of movie that is less than release year of first movie ever 
 (Officially first movie was "Roundhay Garden Scene" in 1888, [source](https://en.wikipedia.org/wiki/Roundhay_Garden_Scene#:~:text=Roundhay%20Garden%20Scene%20is%20a,Kingdom%20on%2016%20November%201888.)) <br>
-- **User's Movie Status**: Choose the status of the movie from the following options:
+- **User's Movie Status**: Choose the status of the movie from the following options:<br>
        1. Want to watch<br>
        2. Watching<br>
        3. Already watched<br>  
