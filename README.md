@@ -18,7 +18,8 @@ To start the program, follow the steps below:
     ```mvn clean compile```
  4. Run the code with maven:<br>
     ```mvn exec:java```
-
+## Developer documentation 
+Developer docuemntation you can find [here](documentation/developer documentation/site/apidocs/index.html)<br>
 ## Usage
 ### 0. Important!
 To use all options user needs to write **numbers** from the menus in the console where it requests choices. <br>
