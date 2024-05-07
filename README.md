@@ -11,11 +11,11 @@ A classic console application for managing movies you watched or always wanted t
 To start the program, follow the steps below:
 
  1. Clone the repository in terminal using next command:<br>
-    ``` git clone https://github.com/Eramcheg/MovieConsoleApp.git ```
+    ```git clone https://github.com/Eramcheg/MovieConsoleApp.git```
  2. Navigate to the directory with cloned reposity:<br>
-   ``` cd MovieConsoleApp```
+    ```cd MovieConsoleApp```
  3. Compile the code with maven:<br>
-    ``` mvn clean compile```
+    ```mvn clean compile```
  4. Run the code with maven:<br>
-    ``` mvn exec:java```
+    ```mvn exec:java```
 
