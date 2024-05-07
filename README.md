@@ -32,7 +32,7 @@ To start the program, follow the steps below:
  Once inside the application, users are presented with the Main Menu, which serves as the central hub for all primary interactions. From here, users can manage their movie collection with the following options:<br>
  ![Alt Text](Images/Main_menu.png)
    ### 2.1. Add a new movie
-          This option allows users to input and save new movie details into their collection, expanding their movie database.
+ This option allows users to input and save new movie details into their collection, expanding their movie database.
           When user chooses this option, app starts process of adding new movie by requesting appropriate data:<br>
           - **Movie Title**: First it asks for Movie Title (That can be in any form), or user can type 'quit' to stop process of adding. It requests 'quit' with a small first letter to avoid situations when movie 
           has exact same name. It user wants to add "quit" as a movie title, it has to start with a capital letter - "Quit".<br>
@@ -44,8 +44,7 @@ To start the program, follow the steps below:
           - **User's Movie Status**: Choose the status of the movie from the following options:
                  1. Want to watch
                  2. Watching
-                 3. Already watched
-                 
+                 3. Already watched  
             Enter the number corresponding to the desired status.
           - **User's Rating**: Sixth value will be requested in the situation if user's movie status was 3. Already watched. This values asks for user's rating of the watched film. This value can be written only 
           in the forms 3 (Integer value), 9.4 (Decimal with dot) or 9,4 (Decimal with comma). <br>
