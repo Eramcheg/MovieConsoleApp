@@ -21,14 +21,14 @@ To start the program, follow the steps below:
 
 ## Usage
 
-###1. **Welcome Menu**<br>
+### 1. **Welcome Menu**<br>
    When the user launches the application, the first screen they encounter is the Welcome Menu. This menu serves as the gateway to the application, offering two primary functions:
    - **Start Application**: This option allows the user to enter the main interface of the application where they can manage and interact with their movies.
    - **Quit**: This option provides a way for users to exit the application if it was opened accidently.
      <br>
  ![Alt Text](Images/Welcome_menu.png)
 
-###2. **Main Menu**<br>
+### 2. **Main Menu**<br>
 Once inside the application, users are presented with the Main Menu, which serves as the central hub for all primary interactions. From here, users can manage their movie collection with the following options:<br>
 ![Alt Text](Images/Main_menu.png)
 
@@ -59,7 +59,7 @@ This option opens Statistics menu to calculate and show statistics about existin
 #### 2.4. Exit
 This option exit the program. <br>
 
-###3. **Movies Menu**<br>
+### 3. **Movies Menu**<br>
 
 ![Alt Text](Images/Movies_menu.png)
 #### 3.1. Edit movie
@@ -68,7 +68,7 @@ This option exit the program. <br>
 #### 3.4. Set display type
 #### 3.5. Delete movie
    
-###4. **Statistics Menu**<br>
+### 4. **Statistics Menu**<br>
 
 ![Alt Text](Images/Statistics_menu.png)
 #### 4.1. Total statistics
