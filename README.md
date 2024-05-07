@@ -50,6 +50,9 @@ To start the program, follow the steps below:
    - 2.3. Display statistics
           This option opens Statistics menu to calculate and show statistics about existing user's movies. <br>
 
+   - 2.4. Exit
+          This option exit the program. <br>
+
 3. **Movies Menu**<br>
    
  ![Alt Text](Images/Movies_menu.png)
