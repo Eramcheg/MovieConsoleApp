@@ -54,14 +54,15 @@ Quentin Tarantino and Tarantino as different directors when generates movies sta
 in the forms 3 (Integer value), 9.4 (Decimal with dot) or 9,4 (Decimal with comma). <br>
           
 #### 2.2. Display all movies
-This option dispays to user all his current movies in the user's list and opens Movies menu to manage existing movies and movies display. <br>
+This option dispays to user all his current movies in the user's list and opens Movies menu to manage existing movies and movies display. For more details click [here](movies)<br>
  
 #### 2.3. Display statistics
-This option opens Statistics menu to calculate and show statistics about existing user's movies. <br>
+This option opens Statistics menu to calculate and show statistics about existing user's movies. For more details click [here](statistics)<br>
 
 #### 2.4. Exit
 This option exit the program. <br>
 
+<a name="movies"></a>
 ### 3. **Movies Menu**<br>
 Once user chooses "Display all movies" option on main menu, it displays all user's movies and menu to manage these movies. In the menu user can do next: 
 
@@ -124,11 +125,32 @@ When user chooses this option, app asks user to choose movie ID. Example: <br>
 - **Delete example**:<br>
 ![Alt Text](Images/example_delete.png)<br>
 
+<a name="statistics"></a>
 ### 4. **Statistics Menu**<br>
-
+Once user chooses "Display statistics" option on main menu, it displays menu of statistics options user can found about movie list. In the menu user can see next statistics: <br>
 ![Alt Text](Images/Statistics_menu.png)
+
 #### 4.1. Total statistics
+This option shows users total statistics about movie collection. Total statistics includes:<br>
+     1. **Total movies added to the collection**
+     2. **Oldest movie from the collection**
+     3. **Newest movie from the collection**
+     4. **The director from which the user has the most added movies**
+     5. **Highest rated movie**
+     6. **Lowest rated movie** 
+     7. **All genres from collection user covered**
 #### 4.2. Movies by genres
+This option shows user's statistics about genres covered in the movies collection in the form of horizontal bar chart, where on the left there are genres, and on the right(top of each bar) total number of movies of this genre. Example: <br>
+
+![Alt Text](Images/genres_statistics.png)
+
 #### 4.3. Rating statistics
+This option shows user's statistics about user's rating in the movies collection in the form of horizontal bar chart, where on the left there are rating ranges (0-1, 1-2, 2-3 ... 8-9, 9-10), and on the right(top of each bar) total number of movies of this rating range. Example: <br>
+
+![Alt Text](Images/rating_statistics.png)
+
 #### 4.4. Movies by directors
+This option shows user's statistics about directors covered in the movies collection in the form of horizontal bar chart, where on the left there are directors, and on the right(top of each bar) total number of movies of this director. Example: <br>
+
+![Alt Text](Images/directors_statistics.png)
    
